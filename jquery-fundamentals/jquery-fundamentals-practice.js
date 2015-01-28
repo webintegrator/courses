@@ -1,0 +1,268 @@
+jQuery('.product').click(function(){jQuery(this).text('clicked');})
+
+
+//---
+
+jQuery(".product").toggle(
+function() {jQuery(this).text('one');},
+function() {jQuery(this).text('two');},
+function() {jQuery(this).text('three');}
+)
+
+//---
+
+jQuery('h2').hide()
+
+//---
+
+jQuery('.a').addClass('.one');
+jQuery('.b').addClass('.two');
+
+
+//WATCH OUT: add class without the precedent dot
+jQuery('.a').addClass('one');  
+jQuery('.b').addClass('two');
+
+//---
+
+
+jQuery ('[alt="jQuery"]') //exact match att selector
+jQuery ('[alt|="jQuery"]') //prefix att selector
+jQuery ('[alt*="jQuery"]') //contains word att selector
+jQuery ('[alt=""]') // empty att selector
+jQuery ('[alt!=""]') //not the element with empty att
+jQuery ('img[alt!=""]') //images without empty alt att
+jQuery ('img[alt~="Theme"]') //in an image match anywhere within
+
+//OTHER
+jQuery ('[alt^="jQ"]') //checks for starting value. Does not look for hyphen or consider words. You can use partial words and it will still find the value.
+jQuery ('[alt*="The"]') //will find a partial match anywhere in the attribute value.
+jQuery ('[alt$="go"]') //will find a partial match if it exists on the very end of the attribute value.
+jQuery ('[alt^="jQ"][width="174"]') //multi-attribute selector. It follows the logic of the items above but each attribute has to match.
+
+// DESCENDENT SELECTOR
+jQuery('li.lvl1 > ul > li') //Specific Direct Children of Level 1 
+jQuery('li#item2 + li') //Next Item After Match
+jQuery('li#item2 ~ li') //Match All Siblings Following Match 
+jQuery('li#item2 ~ *') //Match All Siblings ITEMS
+
+// FORMS SELECTOR
+jQuery(':text')
+jQuery(':password')
+jQuery (':file')
+jQuery('select')
+jQuery(':image') //this is for input image not for regular images
+jQuery(':disabled')
+jQuery(':enabled')
+
+jQuery(':checked') //works for checkboxes and radio buttons
+jQuery(':selected') //For select elements - options in a select menu
+
+jQuery('[name="rb"]:checked') //checked radio buttons with name rb
+jQuery(':input')
+jQuery(':checkbox')
+jQuery(':radio')
+jQuery(':reset')
+jQuery(':submit')
+
+
+//BASIC AND CHILD FILTER SELECTORS
+// Keep in mind JS starts at zero, thus zero shows up as even item
+jQuery('.lvl1:even')
+jQuery('.lvl1:odd')
+
+//Indexed Filtering
+jQuery('.lvl1:eq(1)') //equals specific nth element
+jQuery('.lvl1:gt(1)') //gt greater than
+jQuery('.lvl1:lt(1)') //gt greater than
+
+//Not is Not an Index based filter
+jQuery('.lvl1:not(1)') //wrong way to NOT, not base on index item
+jQuery('.lvl1:not(.lvl1:eq(1))') //Not This Selection but the rest
+jQuery('.lvl1:lt(1),.lvl1:gt(1)') //Not This Index Item But Rest 
+jQuery('.lvl1:not(#item2)') //Not This ID But Rest
+
+//Header Filter
+jQuery(':header') //h1, h2, h3 etc
+
+//First and Last
+jQuery('.lvl1:first')
+jQuery('.lvl1:last')
+
+//Child Index Filter
+jQuery('.lvl1:nth-child(2) ul .lvl2:first-child') //First Child of Item 2
+jQuery('.lvl1:nth-child(2) ul .lvl2:last-child') //Last of Child of Item 2
+jQuery('.lvl1:nth-child(2) ul .lvl2:nth-child(2)') //Child2 of Child2 
+jQuery('.lvl1:nth-child(2) ul .lvl2:nth-child(2) ul li:first-child') //Detailed Selection 
+jQuery('li:only-child') //Only Child Filter, brings out specifically only-child(s)
+
+
+//CONTENT FILTERS
+jQuery(':empty') //all empty items
+jQuery('li:empty') //Empty List Items 
+
+//Contain Filters
+jQuery('li:contains("enjoy")') //contains tree
+jQuery('li:contains("enjoy"):last-child') //contains target
+
+//Has Filters
+jQuery('li.lvl1:has(ol,ul)') //Items With Nested Lists 
+jQuery('li.lvl1:not(li.lvl1:has(ol,ul))') //Items Without Nested Lists
+
+//Parent Filters
+jQuery('li.lvl2:parent') //Surprise Parents: the text within an element counts as having children.
+jQuery('li.lvl1:parent') //Expected Parents 
+
+//Focus filter
+jQuery('li.lvl1:focus') //jQuery 1.6 added a :focus filter selector. If you use this remember that the item has to be an item that would normally get focus from the browsers perspective.
+
+
+//VISIBILITY SELECTORS
+jQuery('.lvl1:eq(2)').hide() //Hide Item 3 (index 2)
+jQuery('.lvl1:hidden') //find hidden items
+jQuery('.lvl1 :hidden').show() //Show All Hidden with TYPO
+jQuery('.lvl1:hidden').show() //Corrected Show Hidden
+jQuery('.lvl2 > *').hide() //Hide Children of Level 2 
+
+
+//DOM MANIPULATION
+//DOM Insertion (inside)
+jQuery('#color1').text('Ruby') //Ruby Text Inserted/Replaces
+jQuery('#color3').html('<span style="color:blue;">Ocean</span>') //Style Ocean with color blue
+jQuery('#color3').append('...') //Add dots after Ocean
+jQuery('#color3 span').prepend('...') //Add dots before Ocean
+jQuery('#cat').appendTo('#color1') //Move Cat
+jQuery('#dog').prependTo('#color3 span') //Move Dog 
+//appendTo()/prependTo() the item selected on the left of the command is what modifies the item on the right.
+
+//DOM Insertion (around and outside)
+jQuery('#cat2')  
+   .after(  
+      "<li>Panther</li>",  
+      "<li>Saber Tooth</li>"  
+   )` //add after
+   
+jQuery('#dog2')  
+   .before(  
+      "<li>Beagle</li>",  
+      "<li>Fox</li>"  
+   )` //add before   
+   
+   
+jQuery('#cat3').insertAfter('#cat2') //Insert After   
+jQuery('#dog1').insertBefore('#dog2') //Insert Before
+
+//Around modifications
+jQuery('ul.lvl1').wrapAll('<div style="border:1px solid red;padding:2px;"></div>') //Wrap All Selected
+jQuery('ul').wrap('<div style="border:1px solid green;padding:2px;"></div>') //Wrap Each Selected 
+jQuery('ul.lvl1').unwrap() //Unwrap Function
+jQuery('#dogs li').wrapInner('<div style="margin:3px;border:1px solid black; background-color:yellow;"></div>') //Wrap Inner 
+
+
+// THIS IS A CHUNK FROM ANOTHER FILE
+
+/*Lesson 3: Dom Manipulation*/
+//Video 13b - Around and Outside
+//inserts 2 li after the id
+jQuery('#cat2')
+.after(
+"<li>Panther</li>",
+"<li>Saber Tooth</li>"
+)
+//inserts 2 new created li before the id
+jQuery('#dog2')
+.before(
+"<li>Beagle</li>",
+"<li>Fox</li>"
+)
+//selects cat3 and inserts it after cat2
+jQuery('#cat3').insertAfter('#cat2')
+//selects dog1 and inserts it before dog2
+jQuery('#dog1').insertBefore('#dog2')
+//selects
+jQuery('ul.lvl1').wrapAll('<div style="border:1px solid red;padding:2px;"></div>')
+//Wrap Each Selected
+jQuery('ul').wrap('<div style="border:1px solid green;padding:2px;"></div>')
+//Unwrap Function
+jQuery('ul.lvl1').unwrap()
+//Wrap Inner method - wraps the contents of every selected item
+jQuery('#dogs li').wrapInner('<div style="margin:3px;border:1px solid black; background-color:yellow;"></div>')
+
+
+//VIDEO 14 - Copy, Removal and Replacement
+//store the clone in a variable first
+hold_clone = jQuery('#cat3').clone();
+jQuery('#cats ul').append(hold_clone);
+//remove specific item from parent-child perspective
+jQuery('#fromList #cat3').remove()
+//detach and moves element
+hold_detach = jQuery('#bird1').detach();
+jQuery('#birds ul').prepend(hold_detach);
+//
+jQuery('#dog2').empty()
+//
+jQuery('<li>mutt</li>').replaceAll('#dogs li')
+//does the same as above if not defining
+jQuery('#dogs li').text('Poodle');
+//
+var myParent = jQuery('#bird2').parent();
+jQuery(myParent)
+.replaceWith(
+"<ol>"
++jQuery(myParent).html()
++"</ol>"
+)
+
+
+
+// video 15
+// Attribute and class manipulation
+
+txtCount = 0;
+txtArray = ['clr1','brdr1'];
+jQuery ('#special1').click(function() {
+	txtCount++;
+	jQuery('label(for="special1")').toggleClass(txtArray[txtCount % 2])
+});
+
+
+
+//make a test: list of commands and write definition, then vice-versa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+     
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -218,16 +218,111 @@ jQuery(myParent)
 // video 15
 // Attribute and class manipulation
 
+jQuery('label[for="special1"]').attr("class","highlight") //Add class to element with specific attribute
+//
+jQuery('label[for="special1"]').removeAttr("class","highlight") //Remove class to element with specific attribute
+//
+jQuery('#myList').val() //Method pulls back which value is selected
+//
+jQuery('#myList').val(3) //Sets value to #3 if available
+//
+jQuery('#special1').is(':checked') //Returns true or false if a value is checked.
+//
+jQuery('label[for="special1"]').addClass('highlight') //adds highlight class to attribute
+//
+jQuery('label[for="special1"]').removeClass('highlight') //removes class
+//
+jQuery('label[for="special1"]').hasClass('highlight') // checks if element has a class
+
+
+
+
+//  this need further revision                                             
 txtCount = 0;
-txtArray = ['clr1','brdr1'];
+txtArray = ['highlight','brdr1'];
 jQuery ('#special1').click(function() {
 	txtCount++;
-	jQuery('label(for="special1")').toggleClass(txtArray[txtCount % 2])
+	jQuery('label[for="special1"]').toggleClass(txtArray[txtCount = 1]);
 });
+
+//video 16 - style manipulation
+jQuery('#img1').css({border:'solid 4px green'}) // add a css value
+//
+// these 2 are the same thing""
+jQuery('#img1').css("background-color")
+jQuery('#img1').css("backgroundColor") //HTML DOM style
+
+jQuery('#img1').css({backgroundColor: '#444444', border: '10px solid blue', margin: '4px', padding: '6px', width: '215px'})
+
+jQuery('#img2').height(60).width(280) //"chained values for height and width"
+
+jQuery('#img2').innerWidth(300)
+jQuery('#img2').outerWidth(300)
+  
+ /*EVENTS */
+ 
+ //Video 17 Load - Unload
+ 
+ //Inserts this text in a paragraph as soon as texts loads
+ jQuery(document).ready(function($){
+		$('p').text('The DOM has been full converted from HTML to browser elements.');
+		});
+	alert('This fires as soon as possible');
+	
+//Loads the ready event, then the next one
+jQuery.holdReady(true);
+jQuery(document).ready(function($) {
+	alert('This is the ready alert.');
+});
+alert('The alert box after holdReady');
+jQuery.holdReady(false);
+
+//Appends and image tag after a paragraph
+jQuery('p').append('<br /><img height="53" width="215" border="0" />')
+
+//Alerts that an image has been loaded, needs to run first
+jQuery('p img').load(function() {
+	alert('Image is loaded now');	
+});
+
+//This actually loads the image
+jQuery('p img').attr("src","logo_jquery_215x53.gif");
+
+//This unloads everything as we leave the page - DOESNT-WORK
+jQuery(window).unload(function() {
+	alert('Unload is working');	
+});
+
+//Video 18 Browser events
+
+//Generates an error message
+jQuery('p img').error(function() {
+	alert('The image tag generted an error');	
+}).attr("src","jqueryui.jpg");
+
+//this adds text and measurements as window gets resized
+jQuery(window).resize(function() {
+	jQuery ('p').prepend('Windows was resized with width of '+jQuery(window).width()+' and a height of '+jQuery(window).width()+'.');
+});
+
+//this adds text while scrolling
+jQuery('#scrollText').scroll(function() {
+	jQuery ('p').prepend('Scroll...');
+});
+
+//Video 19 Events - this is a fundamental for plugin creation
+
+var e = jQuery.Event("click");
+jQuery("#chooseYes").trigger( e );
+
+
+// Video 20 - Event handler attachment, bind, unbind, one, substainability, sustainable binding
+
 
 
 
 //make a test: list of commands and write definition, then vice-versa
+//borrow study plans college de Maisonneuve
 
 
 

@@ -218,186 +218,18 @@ jQuery(myParent)
 // video 15
 // Attribute and class manipulation
 
-jQuery('label[for="special1"]').attr("class","highlight") //Add class to element with specific attribute
-//
-jQuery('label[for="special1"]').removeAttr("class","highlight") //Remove class to element with specific attribute
-//
-jQuery('#myList').val() //Method pulls back which value is selected
-//
-jQuery('#myList').val(3) //Sets value to #3 if available
-//
-jQuery('#special1').is(':checked') //Returns true or false if a value is checked.
-//
-jQuery('label[for="special1"]').addClass('highlight') //adds highlight class to attribute
-//
-jQuery('label[for="special1"]').removeClass('highlight') //removes class
-//
-jQuery('label[for="special1"]').hasClass('highlight') // checks if element has a class
+jQuery('label[for="special1"]').attr("class","highlight")
 
-
-
-
-//  this need further revision                                             
 txtCount = 0;
-txtArray = ['highlight','brdr1'];
+txtArray = ['clr1','brdr1'];
 jQuery ('#special1').click(function() {
 	txtCount++;
-	jQuery('label[for="special1"]').toggleClass(txtArray[txtCount = 1]);
-});
-
-//video 16 - style manipulation
-jQuery('#img1').css({border:'solid 4px green'}) // add a css value
-//
-// these 2 are the same thing""
-jQuery('#img1').css("background-color")
-jQuery('#img1').css("backgroundColor") //HTML DOM style
-
-jQuery('#img1').css({backgroundColor: '#444444', border: '10px solid blue', margin: '4px', padding: '6px', width: '215px'})
-
-jQuery('#img2').height(60).width(280) //"chained values for height and width"
-
-jQuery('#img2').innerWidth(300)
-jQuery('#img2').outerWidth(300)
-  
- /*EVENTS */
- 
- //Video 17 Load - Unload
- 
- //Inserts this text in a paragraph as soon as texts loads
- jQuery(document).ready(function($){
-		$('p').text('The DOM has been full converted from HTML to browser elements.');
-		});
-	alert('This fires as soon as possible');
-	
-//Loads the ready event, then the next one
-jQuery.holdReady(true);
-jQuery(document).ready(function($) {
-	alert('This is the ready alert.');
-});
-alert('The alert box after holdReady');
-jQuery.holdReady(false);
-
-//Appends and image tag after a paragraph
-jQuery('p').append('<br /><img height="53" width="215" border="0" />')
-
-//Alerts that an image has been loaded, needs to run first
-jQuery('p img').load(function() {
-	alert('Image is loaded now');	
-});
-
-//This actually loads the image
-jQuery('p img').attr("src","logo_jquery_215x53.gif");
-
-//This unloads everything as we leave the page - DOESNT-WORK
-jQuery(window).unload(function() {
-	alert('Unload is working');	
-});
-
-//Video 18 Browser events
-
-//Generates an error message
-jQuery('p img').error(function() {
-	alert('The image tag generted an error');	
-}).attr("src","jqueryui.jpg");
-
-//this adds text and measurements as window gets resized
-jQuery(window).resize(function() {
-	jQuery ('p').prepend('Windows was resized with width of '+jQuery(window).width()+' and a height of '+jQuery(window).width()+'.');
-});
-
-//this adds text while scrolling
-jQuery('#scrollText').scroll(function() {
-	jQuery ('p').prepend('Scroll...');
-});
-
-//Video 19 Events - this is a fundamental for plugin creation
-
-var e = jQuery.Event("click");
-jQuery("#chooseYes").trigger( e );
-
-
-// Video 20 - Event handler attachment, bind, unbind, one, substainability, sustainable binding
-
-$('#chooseYes').bind('click', function() {
-	alert('You clicked the radio button.');	
-});
-
-//this below will NOT work cuz an inline function doesn't have a pointer so we need an external function for that to work
-$('#chooseYes').unbind('click', function() {
-	alert('You clicked the radio button.');	
-});
-
-//so it will be like this:
-var myHandler = function() (alert('bind event working'));
-jQuery('#chooseYes').bind("click", myHandler);
-
-jQuery('#chooseYes').unbind("click", myHandler);
-
-
-//this bind the event one time only, so no need to unbind this event
-$('#chooseNo').one('click', function() {
-	alert('this should one show one');	
-});
-
-// this is for sustainable  which allow future elements -currently unexistant- to be affected by the event.
-jQuery('label').live({
-	hover: function() {
-	jQuery(this).toggleClass('hoverLive');
-},
-mouseover: function() {
-	jQuery(this).addClass('mouseover');
-},
-mouseout: function() {
-	jQuery(this).removeClass('mouseover');
-}
-});
-//********
-jQuery('form').prepend('<input id="chooseYes" type="radio" value="yes" name="choose"><label class="" for="chooseYes"> Yes </label><br>');
-
-//To unbind all we "kill it"
-jQuery('label').die();
-
-
-//Add value and focus to field when clicked
-jQuery('#chooseYes').click(function() {
-	jQuery('#rv').val('YES');
-	jQuery('#rv').trigger("focus");	
-});
-
-//
-jQuery('#chooseNo').click(function() {
-	jQuery('#rv').triggerHandler("click");
-});
-jQuery('#chooseYes').focus(function() {
-	alert('I have the focus now.');
+	jQuery('label(for="special1")').toggleClass(txtArray[txtCount = 2])
 });
 
 
-
-
-
-
-
-
-
-
-
-
-// Video 29
-
-// Video 32 
-jQuery.ajaxPrefilter()
-
-// Video 32 jQuery Utilities
-jQuery.type()
-
-
-
-/* Jquery 2.x does not support IE 6,7,8*/
 
 //make a test: list of commands and write definition, then vice-versa
-//borrow study plans college de Maisonneuve
-// create a Cheat Sheet latest jQuery version
 
 
 
